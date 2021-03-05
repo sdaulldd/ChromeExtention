@@ -2,18 +2,21 @@
 //alert("content-script.js 已经注入");
 
 //直接调用注入的其他的js函数 注入的js可以有多个在mainfest中配置
-aa();
+//aa();
 
 // 接收来自后台的消息
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request == "getTenantInfo") {
-        if (divpp == "")
+    if (request === "getTenantInfo") {
+        if (divpp === "") {
             TenantInfo();
+            setTenantInfo();
+        }
         console.log('收到来自popup【租户信息】的消息：', request);
         tip(JSON.stringify(request));
         sendResponse(divpp);
     }
     else {
+        sendResponse(request);
         console.log('收到来自 【其他消息】的消息：', request);
     }
 
@@ -35,15 +38,15 @@ var interval = setInterval(function () {
     }
     chrome.runtime.sendMessage
         (
-        {
-            doc: "yes",
-            data: "123",
-        },
-        function (response) {
+            {
+                doc: "yes",
+                data: "123",
+            },
+            function (response) {
 
-            tip(JSON.stringify("content-script向background 发送消息"));
-            tip('收到来自background的回复：' + response);
-        }
+                tip(JSON.stringify("content-script向background 发送消息"));
+                tip('收到来自background的回复：' + response);
+            }
         );
 }, 500);
 
@@ -66,13 +69,16 @@ function tip(info) {
         }, 4000);
     }, 5000);
 }
+
 //获取用户信息
 function TenantInfo() {
+    //document.getElementsByClassName('company-name')[0].innerText="变化"
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.innerHTML = "document.body.setAttribute('data-fp',JSON.stringify(BSGlobal.WebHead,['TenantId','UserEmail','UserId','UserName']))";
+    script.title = 'othersctip';
+    script.innerHTML = "var objTemp = {loginUserInfo: BSGlobal.loginUserInfo,tenantInfo: BSGlobal.tenantInfo};document.body.setAttribute('data-fp',JSON.stringify(objTemp));";
     document.head.appendChild(script);
-    document.head.removeChild(script);
+    //document.head.removeChild(script);
     divpp = document.body.getAttribute('data-fp');
-    console.log(document.body.getAttribute('data-fp'));
+    console.log(divpp);
 }

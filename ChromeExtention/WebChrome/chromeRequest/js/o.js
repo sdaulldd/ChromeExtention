@@ -1,4 +1,4 @@
-function aa(){
-	//alert("o.js的函数");
+function aa() {
+    alert("o.js的函数");
 }
 

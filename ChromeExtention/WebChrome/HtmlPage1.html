@@ -3,13 +3,39 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <script type="text/javascript">
+    <script src="chromeRequest/js/jquery.js"></script>
 
-        var fistP = "aaaa";
-    </script>
+    <style type="text/css">
+        .spanClass {
+            color: blue;
+        }
+    </style>
 </head>
 
-<body>
-    <h1>测试全局变量</h1>
+<body id="body">
+    <div class="content" id="content">
+        <h1>测试全局变量</h1>
+        <span id="spanId" class="spanClass">初始化值<a style="color:red"> te</a>   </span>
+        
+    </div>
+    <script type="text/javascript">
+        var fistP = "aaaa";
+        var spaFirst = document.getElementById('spanId');
+        // alert(spaFirst.innerText);
+        spaFirst.onclick = function () { alert("123"); };
+        var p = document.createElement("p"); // 创建一个元素节点
+        p.innerHTML = "123";
+        p.className = "company-name"; p.style = "color:red";
+        //spaFirst.insertBefore(p, spaFirst);
+        insertAfter(p, spaFirst);
+        function insertAfter(newElement, targentElement) {
+            var parent = targentElement.parentNode;
+            if (parent.lastChild == targentElement) {
+                parent.appendChild(newElement);
+            } else {
+                parent.insertBefore(newElement, targentElement.nextSibling)
+            }
+        }
+    </script>
 </body>
 </html>

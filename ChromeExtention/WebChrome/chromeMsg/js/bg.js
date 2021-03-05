@@ -1,10 +1,11 @@
 function bgtest() {
     alert("background的bgtest函数！");
-    alert(BSGlobal);
-    alert(BSGlobal.WebHead.TenantId);
+    alert(divpp);
+   // alert(BSGlobal.WebHead.TenantId);
 }
 
 function bb() {
+    alert(divpp);
     alert(BSGlobal);
 }
 // 监听来自content-script的消息
@@ -15,9 +16,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
  
 // backgrond向context_scripts发送消息
-function TT() {
+function TT(msg) {
     
-    sendMessageToContentScript(html, (response) => {
+    sendMessageToContentScript(msg, (response) => {
         //if (response)
         alert('backgrond收到来自content-script的回复：' + response );
     });
