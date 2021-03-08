@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 window.addEventListener('ajaxReadyStateChange', function (e) {
     console.log("最后一次" + e.detail);
-    if (e.detail.readyState === 4 && e.detail.responseURL.indexOf("weixin") >= 0 && e.detail.status == 200) {
+    if (e.detail.readyState === 4 && e.detail.responseURL.indexOf("weixin") >= 0 && e.detail.status === 200) {
         // console.log("最后一次" + e.detail); // XMLHttpRequest Object
     }
 });

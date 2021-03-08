@@ -25,7 +25,7 @@ chrome.webRequest.onBeforeRequest.addListener(
         });
     },
     {
-        urls: ["*://*/*",]//"*://www.italent.com/*", "http://www.italent.link/*", "https://www.italent.link/*",
+        urls: ["*://*/*"]//"*://www.italent.com/*", "http://www.italent.link/*", "https://www.italent.link/*",
     },  //监听页面请求,你也可以通过*来匹配。
     ["blocking"]
 );
@@ -35,7 +35,7 @@ chrome.webRequest.onCompleted.addListener(details => {
     // sendMsgToContentScript(details, function (v) { });
     if (details.url.indexOf("api/v2/UI") >= 0) {
 
-        var tabId = getOnlyCurrentTabId();
+        var tabId = details.tabId;
         var thisUrlResult = transferUrl(details.url, tabId);
         console.log("我是正派的输出：" + JSON.stringify(thisUrlResult));
     }
@@ -48,28 +48,19 @@ chrome.webRequest.onCompleted.addListener(details => {
 
 function transferUrl(url, tableId) {
     var dataExist = null;
-    if (LastRequests !== null) {
+    if (LastRequests.length > 0 && LastRequests[tableId] !== undefined) {
         dataExist = transferUrlData(url, LastRequests[tableId]);
     }
     else {
         dataExist = transferUrlData(url, null);
     }
-    transferUrlData[tableId] = dataExist;
+    LastRequests[tableId] = dataExist;
 
     return dataExist;
 }
-function transferUrlData(url, data) {
-    var dataInner = data;
+function transferUrlData(url, dataInner) {
     if (dataInner === null) {
-        dataInner = {
-            "tabId": "",
-            "UrlList": {
-                "Indexpage": "",
-                "DetailPage": "",
-                "FormView": "",
-                "TableList": "",
-            }
-        };
+        dataInner = {};
     }
 
     if (url.indexOf("UI/IndexPage") >= 0)
@@ -83,7 +74,7 @@ function transferUrlData(url, data) {
     return dataInner;
 }
 
-var LastRequests = null;
+var LastRequests = new Array();
 //{
 //    "tabId": "",
 //    "UrlList": {
@@ -108,12 +99,6 @@ var html = document.body.innerHTML;
 function getCurrentTabId(callback) {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         if (callback) callback(tabs.length ? tabs[0].id : null);
-    });
-}
-// 获取当前选项卡ID
-function getOnlyCurrentTabId() {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        return tabs[0].id;
     });
 }
 // 向content-script主动发送消息
