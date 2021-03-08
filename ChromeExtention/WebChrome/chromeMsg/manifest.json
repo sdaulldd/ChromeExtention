@@ -5,7 +5,14 @@
   "version": "1.0", //插件使用的版本
   "permissions": [ //允许插件访问的url
     "tabs",
-    "contextMenus"
+    "contextMenus",
+    "http://www.italent.link/*",
+    "https://www.italent.link/*",
+    "http://cloud.italent.link/*",
+    "https://cloud.italent.link/*",
+    "*://www.italent-inc.com/*",
+    "webRequest",
+    "webRequestBlocking"
   ],
   "browser_action": { //插件加载后生成图标
     "default_icon": "icon.png", //图标的图片
@@ -21,7 +28,9 @@
       "http://www.italent.link/*",
       "https://www.italent.link/*",
       "http://www.italent-inc.cn/*",
-      "https://www.italent-inc.cn/*"
+      "https://www.italent-inc.cn/*",
+      "http://cloud.italent.link/*",
+      "https://cloud.italent.link/*"
     ]
   },
   "content_scripts": [
@@ -30,7 +39,9 @@
         "http://www.italent.link/*",
         "https://www.italent.link/*",
         "http://www.italent-inc.cn/*",
-        "https://www.italent-inc.cn/*"
+        "https://www.italent-inc.cn/*",
+        "http://cloud.italent.link/*",
+        "https://cloud.italent.link/*"
       ], //满足什么条件执行该插件即Content Script注入的Web页面
       "js": [ "js/o.js", "js/jquery.js", "js/content_script.js" ], //注入到匹配的Web页面中的JS文件，顺序相关
       "run_at": "document_start" //在document加载时执行该脚本

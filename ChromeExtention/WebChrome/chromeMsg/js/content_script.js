@@ -1,5 +1,6 @@
 //常驻后台，并且会注入到页面中
-//alert("content-script.js 已经注入");
+// 监听 ajax 请求
+
 
 //直接调用注入的其他的js函数 注入的js可以有多个在mainfest中配置
 //aa();
@@ -21,6 +22,31 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     }
 
 });
+window.addEventListener('ajaxReadyStateChange', function (e) {
+    console.log("最后一次" + e.detail);
+    if (e.detail.readyState === 4 && e.detail.responseURL.indexOf("weixin") >= 0 && e.detail.status == 200) {
+        // console.log("最后一次" + e.detail); // XMLHttpRequest Object
+    }
+});
+
+//window.addEventListener('load', () => {
+
+
+//    chrome.storage.local.get(['ajaxInterceptor_switchOn', 'ajaxInterceptor_rules'], (result) => {
+//        if (result.hasOwnProperty('ajaxInterceptor_switchOn')) {
+//            console.log("成不成第一个-> " + JSON.stringify(result.ajaxInterceptor_switchOn));
+//            postMessage({ type: 'ajaxInterceptor', to: 'pageScript', key: 'ajaxInterceptor_switchOn', value: result.ajaxInterceptor_switchOn });
+//        }
+//        if (result.ajaxInterceptor_rules) {
+//            postMessage({ type: 'ajaxInterceptor', to: 'pageScript', key: 'ajaxInterceptor_rules', value: result.ajaxInterceptor_rules });
+//            console.log("成不成=第二个-> " + JSON.stringify(result.ajaxInterceptor_rules));
+//        }
+//    });
+//});
+
+
+
+
 var divpp = "";
 
 

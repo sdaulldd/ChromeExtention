@@ -67,6 +67,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ajax-interceptor-master\background.js" />
+    <Content Include="ajax-interceptor-master\content.js" />
+    <Content Include="ajax-interceptor-master\iframe\.gitignore" />
+    <Content Include="ajax-interceptor-master\iframe\bundle.js" />
+    <Content Include="ajax-interceptor-master\iframe\index.html" />
+    <Content Include="ajax-interceptor-master\iframe\index.js" />
+    <Content Include="ajax-interceptor-master\iframe\main.js" />
+    <Content Include="ajax-interceptor-master\iframe\Replacer.js" />
+    <Content Include="ajax-interceptor-master\iframe\webpack.config.js" />
+    <Content Include="ajax-interceptor-master\images\128.png" />
+    <Content Include="ajax-interceptor-master\images\128_gray.png" />
+    <Content Include="ajax-interceptor-master\images\16.png" />
+    <Content Include="ajax-interceptor-master\images\16_gray.png" />
+    <Content Include="ajax-interceptor-master\images\32.png" />
+    <Content Include="ajax-interceptor-master\images\32_gray.png" />
+    <Content Include="ajax-interceptor-master\images\48.png" />
+    <Content Include="ajax-interceptor-master\images\48_gray.png" />
+    <Content Include="ajax-interceptor-master\pageScripts\main.js" />
+    <Content Include="ajax-interceptor-master\readmeImgs\icon.png" />
+    <Content Include="ajax-interceptor-master\readmeImgs\screenshot.png" />
+    <Content Include="ajax-interceptor-master\readmeImgs\screenshot2.png" />
     <Content Include="chromeRequest\index.html" />
     <Content Include="chromeRequest\icon.png" />
     <Content Include="chromeRequest\background.js" />
@@ -92,6 +113,15 @@
   <ItemGroup>
     <Content Include="chromeMsg\manifest.json" />
     <Content Include="chromeRequest\manifest.json" />
+    <Content Include="ajax-interceptor-master\Ajax-Interceptor.crx" />
+    <Content Include="ajax-interceptor-master\iframe\.babelrc" />
+    <Content Include="ajax-interceptor-master\iframe\Main.less" />
+    <Content Include="ajax-interceptor-master\iframe\package-lock.json" />
+    <Content Include="ajax-interceptor-master\iframe\package.json" />
+    <Content Include="ajax-interceptor-master\iframe\Replacer.less" />
+    <Content Include="ajax-interceptor-master\manifest.json" />
+    <Content Include="ajax-interceptor-master\README-zh.md" />
+    <Content Include="ajax-interceptor-master\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
