@@ -7,7 +7,7 @@ aa();
 // 接收来自后台的消息
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     console.log('收到来自 ' + (sender.tab ? "content-script(" + sender.tab.url + ")" : "popup或者background") + ' 的消息：', request);
-     
+
     //tip(JSON.stringify(request));
     sendResponse('我收到你的消息了：' + divpp);
 
@@ -45,15 +45,15 @@ var interval = setInterval(function () {
     }
     chrome.runtime.sendMessage
         (
-        {
-            doc: "yes",
-            data: "123",
-        },
-        function (response) {
+            {
+                doc: "yes",
+                data: "123",
+            },
+            function (response) {
 
-            tip(JSON.stringify("content-script向background 发送消息"));
-            tip('收到来自background的回复：' + response);
-        }
+                tip(JSON.stringify("content-script向background 发送消息"));
+                tip('收到来自background的回复：' + response);
+            }
         );
 }, 500);
 
@@ -68,11 +68,9 @@ function tip(info) {
     document.body.appendChild(ele);
     ele.classList.add('animated');
     tipCount++;
-    setTimeout(() => {
-        ele.style.top = '-100px';
-        setTimeout(() => {
-            ele.remove();
-            tipCount--;
-        }, 4000);
-    }, 5000);
+    ele.style.top = '100px';
+    //setTimeout(() => {
+    //    ele.remove();
+    //    tipCount--;
+    //}, 4000);
 }

@@ -3,7 +3,6 @@
 
 
 //直接调用注入的其他的js函数 注入的js可以有多个在mainfest中配置
-//aa();
 
 // 接收来自后台的消息
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -15,6 +14,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         console.log('收到来自popup【租户信息】的消息：', request);
         tip(JSON.stringify(request));
         sendResponse(divpp);
+    }
+    //获取页面的信息
+    if (request === "getPageInfo") {
+        console.log('收到来自popup【租户信息】的消息：', request);
+        sendResponse(JSON.stringify(thisUrlResult));
     }
     else {
         sendResponse(request);
@@ -29,30 +33,16 @@ window.addEventListener('ajaxReadyStateChange', function (e) {
     }
 });
 
-//window.addEventListener('load', () => {
-
-
-//    chrome.storage.local.get(['ajaxInterceptor_switchOn', 'ajaxInterceptor_rules'], (result) => {
-//        if (result.hasOwnProperty('ajaxInterceptor_switchOn')) {
-//            console.log("成不成第一个-> " + JSON.stringify(result.ajaxInterceptor_switchOn));
-//            postMessage({ type: 'ajaxInterceptor', to: 'pageScript', key: 'ajaxInterceptor_switchOn', value: result.ajaxInterceptor_switchOn });
-//        }
-//        if (result.ajaxInterceptor_rules) {
-//            postMessage({ type: 'ajaxInterceptor', to: 'pageScript', key: 'ajaxInterceptor_rules', value: result.ajaxInterceptor_rules });
-//            console.log("成不成=第二个-> " + JSON.stringify(result.ajaxInterceptor_rules));
-//        }
-//    });
-//});
-
-
-
-
 var divpp = "";
 
 
+//延迟加载的东西(延迟5s)
 setTimeout(function () {
-
-}, 1000);
+    console.log("这个是延迟函数!!!");
+    TenantInfo();
+    setTenantInfo();
+    tip("我就是tip一下！！");
+}, 5000);
 
 
 //与后端background进行消息交互	 执行6秒
@@ -70,8 +60,8 @@ var interval = setInterval(function () {
             },
             function (response) {
 
-                tip(JSON.stringify("content-script向background 发送消息"));
-                tip('收到来自background的回复：' + response);
+                //tip(JSON.stringify("content-script向background 发送消息"));
+                //tip('收到来自background的回复：' + response);
             }
         );
 }, 500);
@@ -81,19 +71,19 @@ var tipCount = 0;
 function tip(info) {
     info = info || '';
     var ele = document.createElement('div');
-    ele.className = 'chrome-plugin-simple-tip slideInLeft';
+    ele.className = 'common-dialog-box';
     ele.style.top = tipCount * 70 + 20 + 'px';
     ele.innerHTML = `<div>${info}</div>`;
     document.body.appendChild(ele);
     ele.classList.add('animated');
     tipCount++;
+
+    ele.style.top = '-100px';
     setTimeout(() => {
-        ele.style.top = '-100px';
-        setTimeout(() => {
-            ele.remove();
-            tipCount--;
-        }, 4000);
-    }, 5000);
+        //ele.remove();
+        tipCount--;
+    }, 14000);
+
 }
 
 //获取用户信息

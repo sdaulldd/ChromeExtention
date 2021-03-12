@@ -1,8 +1,14 @@
+//import { json } from "body-parser";
+
 function bgtest() {
     alert("background的bgtest函数！");
-    alert(divpp);
-    // alert(BSGlobal.WebHead.TenantId);
+    getCurrentTabId(function (tab) { activeTabId = tab.id });
+    alert(activeTabId + "---" + JSON.stringify(LastRequests));
+    return JSON.stringify(LastRequests[activeTabId]);
 }
+
+var activeTabId;
+
 
 function bb() {
     alert(divpp);

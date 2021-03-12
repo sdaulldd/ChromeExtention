@@ -88,6 +88,8 @@
     <Content Include="ajax-interceptor-master\readmeImgs\icon.png" />
     <Content Include="ajax-interceptor-master\readmeImgs\screenshot.png" />
     <Content Include="ajax-interceptor-master\readmeImgs\screenshot2.png" />
+    <Content Include="chromeMsg\css\popCss.css" />
+    <Content Include="chromeMsg\css\tenantBaseCustom.css" />
     <Content Include="chromeRequest\index.html" />
     <Content Include="chromeRequest\icon.png" />
     <Content Include="chromeRequest\background.js" />

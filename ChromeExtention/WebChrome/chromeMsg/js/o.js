@@ -38,14 +38,20 @@ function insertAfter(newElement, targentElement) {
     }
 };
 
+//展示租户和用户信息
 function setTenantInfo() {
     var BSGlobalCopy = JSON.parse(divpp);
-
-
-    var pApendTenantId = ctorElement("appendtenantId", BSGlobalCopy.tenantInfo.tenantId, "租户ID");
-    var pApendTuserid = ctorElement("appenduserId", BSGlobalCopy.loginUserInfo.id, "用户ID");
-
     var showData = document.getElementsByClassName('company-name')[0];
+    var BSGlobalInfo = { tenantId: BSGlobalCopy.tenantInfo.tenantId, userID: BSGlobalCopy.loginUserInfo.id };
+    //说明是新版菜单体系的
+    if (showData === undefined) {
+        showData = document.getElementsByClassName('Header__GlobalNavigationButton')[0];
+        BSGlobalInfo = { tenantId: BSGlobalCopy.tenantInfo.Id, userID: BSGlobalCopy.loginUserInfo.Id };
+    }
+
+    var pApendTenantId = ctorElement("appendtenantId", BSGlobalInfo.tenantId, "租户ID");
+    var pApendTuserid = ctorElement("appenduserId", BSGlobalInfo.userID, "用户ID");
+
 
     insertAfter(pApendTenantId, showData);
     insertAfter(pApendTuserid, pApendTenantId);
@@ -55,7 +61,7 @@ function setTenantInfo() {
 function ctorElement(id, html, fieldName) {
     var pApend = document.createElement("p");
     pApend.className = "company-name";
-    pApend.style = "color: red";
+    pApend.style = "color: red;padding-left:10px;margin:auto;font-size:14px;";
     pApend.id = id;
     pApend.onclick = function (pApend) {
         copyLink(pApend, fieldName);

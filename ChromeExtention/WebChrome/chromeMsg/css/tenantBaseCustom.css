@@ -1,0 +1,17 @@
+﻿.common-dialog-box {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    z-index: 1000;
+    width: 500px;
+    height: 50px;
+    line-height: 50px;
+    margin-left: -250px;
+    border-radius: 3px;
+    background-color: #fff;
+    overflow: hidden;
+    visibility: hidden;
+    transition: all 0.5s;
+}

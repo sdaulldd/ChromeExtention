@@ -8,10 +8,21 @@ $('#bg').click(() => {
 
 
 });
+var bg = chrome.extension.getBackgroundPage();
+alert(bg.bgtest());
 sendMessageToContentScript('getTenantInfo', (response) => {
     if (response) {
         var headInfo = JSON.parse(response);
         $("#strShow").val(headInfo.TenantId);
+    }
+});
+sendMessageToContentScript('getPageInfo', (response) => {
+    if (response) {
+        var PageInfo = JSON.parse(response);
+        $("#detailShow").val(PageInfo.DetailPage);
+        $("#indexShow").val(PageInfo.IndexPage);
+        $("#tableShow").val(PageInfo.TableList);
+        $("#formShow").val(PageInfo.FormView);
     }
 });
 //test
