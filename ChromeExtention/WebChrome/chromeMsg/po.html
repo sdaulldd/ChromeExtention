@@ -2,39 +2,168 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <link href="css/popCss.css" rel="stylesheet" />
-    <style type="text/css">
+    <!--<link href="css/popCss.css" rel="stylesheet" />-->
+    <link href="css/fSelect.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/z-UI.tab.css" />
 
+    <!--<link rel="stylesheet" type="text/css" href="css/demo.css">-->
+    <style type="text/css">
         .inputCommon {
             width: 200px;
+            margin-top: 5px;
+        }
+
+        .btn40 {
+            height: 40px;
+            background: url("img/bg40.jpg") repeat-x left top;
+            padding-bottom: 2px;
+            color: #FFF;
+            margin: 5px 5px 5px 5px;
+            border: 0px;
+            cursor: pointer;
+        }
+
+        .divLine {
+            width: 200px;
+            margin-top: 7px;
         }
     </style>
 
 </head>
-<body style="width: 300px;font-size:14px;">
-    <div width="200px" style="padding-top:10px;">
-        <!--<input type="button" class="button" style="margin:5px 5px 5px 5px" id="con" value="popup发送消息给content_scripts" />
-        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="bg" value="popup调用background的js函数" />
-        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="test" value="test按钮" />
-        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="bgtocon" value="background发送消息给content_scripts" />
-        <input style="width:100px" id="strShow" value="hhh" />-->
-        详情页：<input class="inputCommon" id="detailShow" value="详情页" />
+<body style="width: 400px;font-size:14px;">
+    <div style="width: 100%;height: 100%;overflow-y: auto;box-sizing: border-box;padding: 0px;display: inline-flex">
+        <div style="width: 100%;height:300px;margin: 5px;">
+            <div class="zUI-bar card sm" id="tab2">
+                <div class="bar-box">
+                    <div class="nav-line">
+                        <div class="nav active" id="asd">
+                            自动构建
+                        </div>
+                        <div class="nav">
+                            选项二
+                        </div>
+                        <div class="nav">
+                            选项三
+                        </div>
+                        <div class="nav disable">
+                            选项四
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="wrap zUI-show">
+                        <div width="200px" style="padding-top:10px;">
+                            <!--<input type="button" class="button" style="margin:5px 5px 5px 5px" id="con" value="popup发送消息给content_scripts" />
+                            <input type="button" class="button" style="margin:5px 5px 5px 5px" id="bg" value="popup调用background的js函数" />
+                            <input type="button" class="button" style="margin:5px 5px 5px 5px" id="test" value="test按钮" />
+                            <input type="button" class="button" style="margin:5px 5px 5px 5px" id="bgtocon" value="background发送消息给content_scripts" />
+                            <input style="width:100px" id="strShow" value="hhh" />-->
+
+                        </div>
+                        <!--<div width="200px" style="padding-top:10px;">
+
+                            详情页：<input class="inputCommon" id="detailShow" value="详情页" />
+
+                        </div>
+                        <div width="200px">
+                            视图：<input class="inputCommon" id="indexShow" value="视图" />
+                        </div>
+                        <div width="200px">
+                            列表：<input class="inputCommon" id="tableShow" value="列表" />
+                        </div>
+                        <div width="200px">
+                            表单：<input class="inputCommon" id="formShow" value="表单" />
+                        </div>-->
+                        <div width="200px">
+                            <input type="button" class="btn40" style=" width: 156px;" id="testContentFun" value="执行Jenkins自动化构建" />
+                            <input type="button" class="btn40" style=" width: 66px;" id="ssoLogin" value="SSO登录" />
+                        </div>
+                        <div class="divLine">
+                            1、请选择分支：<select class="selectsingle" id="branchSelect">
+                                <option value="dev">dev</option>
+                                <option value="test">test</option>
+                                <option value="master">master</option>
+                            </select>
+                        </div>
+                        <div class="divLine">
+                            2、是否自动构建：<select class="selectsingle" id="ctorType">
+                                <option value="1" selected>是</option>
+                                <option value="0">否</option>
+                            </select>
+                        </div>
+                        <div width="200px" class="container inputCommon">
+                            3、请选择项目：<select class="demo " multiple="multiple">
+                                <optgroup label="ESB服务">
+                                    <option value="service.Beisen.ESBFlowTrainingDemo">service.Beisen.ESBFlowTrainingDemo</option>
+                                    <option value="service.CoreHr.ESB.Internal">service.CoreHr.ESB.Internal</option>
+                                    <option value="service.CoreHr.ESB.Approval">service.CoreHr.ESB.Approval</option>
+                                    <option value="service.TenantBase.ESB.Dimission">service.TenantBase.ESB.Dimission</option>
+                                    <option value="service.TenantBase.ESB.Organization">service.TenantBase.ESB.Organization</option>
+                                    <option value="service.CoreHr.ESB.OrganizationData">service.CoreHr.ESB.OrganizationData</option>
+
+                                    <option value="service.TenantBase.ESB.Trainee">service.TenantBase.ESB.Trainee</option>
+                                    <option value="service.TenantBase.ESB.Transfer">service.TenantBase.ESB.Transfer</option>
+                                    <option value="service.CoreHr.ESB.Import">service.CoreHr.ESB.Import</option>
+                                    <option value="service.CoreHr.ESB.External">service.CoreHr.ESB.External</option>
+                                    <option value="service.Beisen.PPS.Industry.QuickEntry">service.Beisen.PPS.Industry.QuickEntry</option>
+
+                                    <option value="service.TenantBase.ESB.Contract">service.TenantBase.ESB.Contract</option>
+                                    <option value="service.Beisen.PPS.TenantBase.OnBoarding">service.Beisen.PPS.TenantBase.OnBoarding</option>
+                                    <option value="service.CoreHr.ESB.Syndication">service.CoreHr.ESB.Syndication</option>
+                                    <option value="service.TenantBase.ESB.Entry">service.TenantBase.ESB.Entry</option>
+                                    <option value="service.TenantBase.ESB.SettingsSystem">service.TenantBase.ESB.SettingsSystem</option>
+                                    <option value="service.CoreHr.ESB.Consistency">service.CoreHr.ESB.Consistency</option>
+                                    <option value=" esb.Beisen.CoreHr.ESB.Stable"> esb.Beisen.CoreHr.ESB.Stable</option>
+
+                                </optgroup>
+                                <optgroup label="Nuget包">
+                                    <option value="nuget.CoreHr.ESB.Approval">nuget.CoreHr.ESB.Approval</option>
+                                    <option value="nuget.PPS.TenantBase.ESB.Dimission">nuget.PPS.TenantBase.ESB.Dimission</option>
+                                    <option value="nuget.PPS.TenantBase.ESB.Internal">nuget.PPS.TenantBase.ESB.Internal</option>
+                                    <option value="nuget.PPS.TenantBase.ESB.Organization">nuget.PPS.TenantBase.ESB.Organization</option>
+                                    <option value="nuget.PPS.TenantBase.ESB.Trainee">nuget.PPS.TenantBase.ESB.Trainee</option>
+                                    <option value="nuget.PPS.TenantBase.ESB.Transfer">nuget.PPS.TenantBase.ESB.Transfer</option>
+                                    <option value="nuget.PPS.TenantBase.ESB.Establishment">nuget.PPS.TenantBase.ESB.Establishment</option>
+                                    <option value="nuget.CoreHr.ESB.Stable">nuget.CoreHr.ESB.Stable</option>
+                                    <option value="js">JavaScript</option>
+                                </optgroup>
+                                <optgroup label="Other">
+                                    <option value="Beisen.PPS.SDK.Approval">Beisen.PPS.SDK.Approval</option>
+                                    <option value="service.Beisen.PPS.OPS">service.Beisen.PPS.OPS（加审批类型）</option>
+                                    <option value="asp">ASP</option>
+                                    <option value="jsp">JSP</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <p><font color="red">请在https://www.italent.*/网页下调试</font></p>
+                    </div>
+                    <div class="wrap">
+                        tab选项卡  <input type="button" class="btn40" style=" width: 66px;margin-left:140px" id="ssoLoginTest" value="测试用的" />
+                    </div>
+                    <div class="wrap">
+                        许多年过去了，人们说陈年旧事可以被埋葬，然而我终于明白这是错的，因为往事会自行爬上来。回首前尘，我意识到在过去二十六年里，自己始终在窥视着那荒芜的小径。
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
-    <div width="200px">
-        视图：<input class="inputCommon" id="indexShow" value="视图" />
-    </div>
-    <div width="200px">
-        列表：<input class="inputCommon" id="tableShow" value="列表" />
-    </div>
-    <div width="200px">
-        表单：<input class="inputCommon" id="formShow" value="表单" />
-    </div>
-    <p><font color="red">请在https://www.italent.*/网页下调试</font></p>
+
+
+
+
+
 </body>
+
 </html>
-<!--<script src="js/po.js"></script>
-    不写type='text/javascript' jquery不起作用 why？？？
-<script src="js/jquery.js"></script> -->
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/fselect.js"></script>
+
+<script type="text/javascript" src="js/z-UI.js"></script>
+<script type="text/javascript" src="js/z-UI.dom.js"></script>
+<script type="text/javascript" src="js/z-UI.tab.js"></script>
 <script type="text/javascript" src="js/po.js"></script>
+

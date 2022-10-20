@@ -40,6 +40,8 @@ function insertAfter(newElement, targentElement) {
 
 //展示租户和用户信息
 function setTenantInfo() {
+    if (window.location.href.indexOf("italent") == -1)
+        return;
     var BSGlobalCopy = JSON.parse(divpp);
     var showData = document.getElementsByClassName('company-name')[0];
     var BSGlobalInfo = { tenantId: BSGlobalCopy.tenantInfo.tenantId, userID: BSGlobalCopy.loginUserInfo.id };
@@ -80,4 +82,35 @@ function copyLink(element, fieldName) {
     oInput.className = 'oInput';
     oInput.style.display = 'none';
     alert(fieldName + "已复制到剪切板！");
+}
+//更改jenkinss
+function changeUrlAndReload() {
+    this.location = changeURLArg(window.location.href, "auto", 3);
+}
+
+function changeURLArg(url, arg, arg_val) {
+    var pattern = arg + '=([^&]*)';
+    var replaceText = arg + '=' + arg_val;
+    if (url.match(pattern)) {
+        var tmp = '/(' + arg + '=)([^&]*)/gi';
+        tmp = url.replace(eval(tmp), replaceText);
+        return tmp;
+    } else {
+        if (url.match('[\?]')) {
+            return url + '&' + replaceText;
+        } else {
+            return url + '?' + replaceText;
+        }
+    }
+}
+function getQueryString(name, url) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+
+    if (url == null)
+        url = window.location;
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
 }

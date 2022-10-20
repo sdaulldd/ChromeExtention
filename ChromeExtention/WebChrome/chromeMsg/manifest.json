@@ -6,10 +6,17 @@
   "permissions": [ //允许插件访问的url
     "tabs",
     "contextMenus",
-    "*//*.italent.link/*",
-    "*://www.italent-inc.com/*",
+    "*://*.italent.link/*",
+    "*://*.italent-inc.cn/*",
+    "*://*.italent.cn/*",
+    "*://*.beisen.cn/*",
     "webRequest",
-    "webRequestBlocking"
+    "cookies",
+    "http://jci.beisencorp.com/*",
+    "*://sso.beisencorp.com/*",
+    "http://prod-tool.beisen-inc.com/*",
+    "webRequestBlocking",
+    "*://beisen2.yufuid.com/*"
   ],
   "browser_action": { //插件加载后生成图标
     "default_icon": "icon.png", //图标的图片
@@ -38,12 +45,14 @@
   "content_scripts": [
     { //对页面内容进行操作的脚本定义(必填)
       "matches": [
-        "http://www.italent.link/*",
-        "https://www.italent.link/*",
-        "http://www.italent-inc.cn/*",
-        "https://www.italent-inc.cn/*",
-        "http://cloud.italent.link/*",
-        "https://cloud.italent.link/*"
+        "*://*.italent.cn/*",
+        "*://*.italent.link/*",
+        "*://*.italent-inc.cn/*",
+        "*://*.beisen.cn/*",
+        "*://sso.beisencorp.com/*",
+        "http://jci.beisencorp.com/*",
+        "http://prod-tool.beisen-inc.com/*",
+        "*://beisen2.yufuid.com/*"
       ],
       //"matches": [
       //  "*//www.italent.link/*",

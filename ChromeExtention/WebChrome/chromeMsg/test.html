@@ -1,0 +1,284 @@
+﻿<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <!--<link href="css/popCss.css" rel="stylesheet" />-->
+    <link href="css/fSelect.css" rel="stylesheet" type="text/css">
+    <!--<link rel="stylesheet" type="text/css" href="css/demo.css">-->
+    <style type="text/css">
+
+        .inputCommon {
+            width: 200px;
+            margin-top: 5px;
+        }
+
+        .btn40 {
+            width: 216px;
+            height: 40px;
+            background: url("img/bg40.jpg") repeat-x left top;
+            padding-bottom: 2px;
+            color: #FFF;
+        }
+    </style>
+
+</head>
+<body style="width: 300px;font-size:14px;">
+    <form method="post" name="parameters" action="build?delay=0sec">
+        <table width="100%" class="parameters">
+            <tbody>
+                <tr>
+                    <td class="setting-leftspace"> </td>
+                    <td class="setting-name">SOURCE_TYPE</td>
+                    <td class="setting-main">
+                        <div name="parameter">
+                            <input name="name" type="hidden" value="SOURCE_TYPE" /><select name="value">
+                                <option value="heads" selected="true">heads</option>
+                                <option value="tags">tags</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="setting-no-help"></td>
+                </tr>
+                <tr class="validation-error-area">
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="setting-description">构建内容类型：heads-构建分支；tags-构建Tag</td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="setting-leftspace"> </td>
+                    <td class="setting-name">SOURCE_CONTENT</td>
+                    <td class="setting-main">
+                        <div name="parameter" description="构建分支/Tag名称">
+                            <input name="name" type="hidden"
+                                   value="SOURCE_CONTENT" /><select name="value">
+                                <option value="master">master</option>
+                                <option value="test-aaa">test-aaa</option>
+                                <option value="test-lild">test-lild</option>
+                                <option value="test-nogitignore">test-nogitignore</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="setting-no-help"></td>
+                </tr>
+                <tr class="validation-error-area">
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="setting-description">构建分支/Tag名称</td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="setting-leftspace"> </td>
+                    <td class="setting-name">CreateTag</td>
+                    <td class="setting-main">
+                        <div name="parameter">
+                            <input name="name" type="hidden" value="CreateTag" /><input name="value"
+                                                                                        type="checkbox" class=" " />
+                        </div>
+                    </td>
+                    <td class="setting-no-help"></td>
+                </tr>
+                <tr class="validation-error-area">
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="setting-description">是否创建git tag</td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="setting-leftspace"> </td>
+                    <td class="setting-name">BUILD_TYPE</td>
+                    <td class="setting-main">
+                        <div name="parameter">
+                            <input name="name" type="hidden" value="BUILD_TYPE" /><select name="value">
+                                <option value="BuildFile" selected="true">BuildFile</option>
+                                <option value="AutoPublish">AutoPublish</option>
+                                <option value="Both">Both</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="setting-no-help"></td>
+                </tr>
+                <tr class="validation-error-area">
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="setting-description">BuildFile--仅生成文件，不自动发布；AutoPublish--仅自动发布，不打包生成；Both--生成文件并自动发布<br></td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="setting-leftspace"> </td>
+                    <td class="setting-name">OUTPUT_FILES</td>
+                    <td class="setting-main">
+                        <div name="parameter">
+                            <input name="name" type="hidden" value="OUTPUT_FILES" /><textarea name="value"
+                                                                                              rows="5" class="setting-input   ">ALL</textarea>
+                            <div class="textarea-handle"></div>
+                        </div>
+                    </td>
+                    <td class="setting-no-help"></td>
+                </tr>
+                <tr class="validation-error-area">
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="setting-description">指定输出文件，默认ALL（全部输出）</td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="setting-leftspace"> </td>
+                    <td class="setting-name">EnablePreBuild</td>
+                    <td class="setting-main">
+                        <div name="parameter">
+                            <input name="name" type="hidden" value="EnablePreBuild" /><select name="value">
+                                <option value="false" selected="true">false</option>
+                                <option value="true">true</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="setting-no-help"></td>
+                </tr>
+                <tr class="validation-error-area">
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="setting-description">是否修改编译得解决方案</td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tr>
+                <td colspan="4">
+                    <input type="hidden" name="statusCode" value="303" /><input type="hidden" name="redirectTo"
+                                                                                value="." /><input name="Submit" type="submit" value="开始构建" class="submit-button primary" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div width="200px" style="padding-top:10px;">
+        <!--<input type="button" class="button" style="margin:5px 5px 5px 5px" id="con" value="popup发送消息给content_scripts" />
+        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="bg" value="popup调用background的js函数" />
+        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="test" value="test按钮" />
+        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="bgtocon" value="background发送消息给content_scripts" />
+        <input style="width:100px" id="strShow" value="hhh" />-->
+        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="testContentFun" value="testContentFun" />
+        <input type="button" class="button" style="margin:5px 5px 5px 5px" id="testSelect" value="testSelect" onclick="GetSelect()" />
+    </div>
+    <div width="200px" style="padding-top:10px;">
+
+        详情页：<input class="inputCommon" id="detailShow" value="详情页" />
+
+    </div>
+    <div width="200px">
+        视图：<input class="inputCommon" id="indexShow" value="视图" />
+    </div>
+    <div width="200px">
+        列表：<input class="inputCommon" id="tableShow" value="列表" />
+    </div>
+    <div width="200px">
+        表单：<input class="inputCommon" id="formShow" value="表单" />
+        <input type="button" class="btn40" style="margin:5px 5px 5px 5px;border:0px;" id="testContentFun" value="执行Jenkins自动化构建" />
+    </div>
+    <div width="200px">
+        请选择分支：<select class="selectsingle" id="branchSelect">
+            <option value="dev">dev</option>
+            <option value="test">test</option>
+            <option value="master">master</option>
+        </select>
+    </div>
+    <div width="200px">
+        是否自动构建：<select class="selectsingle" id="ctorType">
+            <option value="1" selected>是</option>
+            <option value="0">否</option>
+        </select>
+    </div>
+    <div width="200px" class="container inputCommon">
+        Jenkins构建：<select class="demo " multiple="multiple">
+            <optgroup label="ESB服务">
+                <option value="service.Beisen.ESBFlowTrainingDemo">service.Beisen.ESBFlowTrainingDemo1</option>
+                <option value="service.CoreHr.ESB.Internal">service.CoreHr.ESB.Internal</option>
+                <option value="service.CoreHr.ESB.Approval">service.CoreHr.ESB.Approval</option>
+                <option value="service.TenantBase.ESB.Dimission">service.TenantBase.ESB.Dimission</option>
+                <option value="service.TenantBase.ESB.Organization">service.TenantBase.ESB.Organization</option>
+                <option value="service.TenantBase.ESB.OrganizationData">service.TenantBase.ESB.OrganizationData</option>
+
+                <option value="service.TenantBase.ESB.Trainee">service.TenantBase.ESB.Trainee</option>
+                <option value="service.TenantBase.ESB.Transfer">service.TenantBase.ESB.Transfer</option>
+                <option value="service.CoreHr.ESB.Import">service.CoreHr.ESB.Import</option>
+
+                <option value="service.CoreHr.ESB.External">service.CoreHr.ESB.External</option>
+            </optgroup>
+            <optgroup label="Nuget包">
+                <option value="js">JavaScript</option>
+                <option value="php">PHP</option>
+                <option value="asp">ASP</option>
+                <option value="jsp">JSP</option>
+            </optgroup>
+            <optgroup label="Other">
+                <option value="js">JavaScript</option>
+                <option value="php">PHP</option>
+                <option value="asp">ASP</option>
+                <option value="jsp">JSP</option>
+            </optgroup>
+        </select>
+    </div>
+    <p><font color="red">请在https://www.italent.*/网页下调试</font></p>
+</body>
+
+</html>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/fselect.js"></script>
+<script type="text/javascript" src="js/po.js"></script>
+<script type="text/javascript" src="js/o.js"></script>
+<script type="text/javascript">
+    // console.log($("input[value='SOURCE_CONTENT']")
+    var selects = $("input[value='SOURCE_CONTENT']")[0].nextSibling;
+    //selects.childNodes("option[text='dev']").attr("selected", true);
+    selects.value = "test-lild"; 
+    // debugger; 
+    if (getQueryString("auto") == 1) {
+        alert(getQueryString("auto"));
+        this.location = changeURLArg(window.location.href, "auto", 3);
+    }
+    else {
+        alert("不用构建了！！！" + getQueryString("auto"))
+    }
+
+    function GetSelect() {
+        var selectESB = $(".demo").val();
+        if (selectESB == null)
+            alert("请选择要构建的数据");
+        else
+            alert($(".demo").val());
+    }
+</script>

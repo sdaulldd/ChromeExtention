@@ -9,7 +9,11 @@ function bgtest() {
 
 var activeTabId;
 
-
+function bgFormSubmit() {
+    sendMessageToContentScript("getPageInfo", (response) => {
+         
+    });
+}
 function bb() {
     alert(divpp);
     alert(BSGlobal);
