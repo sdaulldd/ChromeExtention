@@ -49,6 +49,15 @@ $('#testContentFun').click(() => {
 $('#ssoLogin').click(() => {
     window.open("https://sso.beisencorp.com/login");
 });
+$('#UpdateTenantInfo').click(() => {
+    sendMessageToContentScript('getTenantInfo', (response) => {
+        if (response) {
+            var headInfo = JSON.parse(response);
+            $("#strShow").val(response);
+        }
+    });
+});
+
 
 //获取cookie的方法
 $('#ssoLoginTest').click(() => {

@@ -11,8 +11,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request === "getTenantInfo") {
         if (divpp === "") {
             TenantInfo();
-            setTenantInfo();
         }
+        if (setSuccess == false)
+            setTenantInfo();
         console.log('收到来自popup【租户信息】的消息：', request);
         tip(JSON.stringify(request));
         sendResponse(divpp);
@@ -40,7 +41,7 @@ window.addEventListener('ajaxReadyStateChange', function (e) {
 });
 
 var divpp = "";
-
+var setSuccess = false;
 //与后端background进行消息交互	 执行6秒
 var startTime = new Date().getTime();
 var interval = setInterval(function () {
@@ -72,7 +73,10 @@ window.onload = function () {
     //jenkins 自动登录
     JenkinsAutoLogin();
     TenantInfo();
-    setTenantInfo();
+    setTimeout(function () {
+        setTenantInfo();
+    }, 1000);
+   
     //自动读取Name
     AutoShowName();
 }
@@ -133,7 +137,7 @@ function SSOAutoLogin() {
     if (window.location.href.indexOf("sso.beisencorp.com/login") == -1)
         return;
     fireKeyEventV2(document.getElementById('username'), "corp\\liliandong");
-    fireKeyEventV2(document.getElementById('password'), "Ruojia0121@");
+    fireKeyEventV2(document.getElementById('password'), "Ruojia0121$");
     var btn = document.getElementsByTagName("button")[0];
     btn.click();
 }

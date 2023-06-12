@@ -42,15 +42,21 @@ function insertAfter(newElement, targentElement) {
 function setTenantInfo() {
     if (window.location.href.indexOf("italent") == -1)
         return;
+    console.log(divpp);
     var BSGlobalCopy = JSON.parse(divpp);
+    //debugger;
     var showData = document.getElementsByClassName('company-name')[0];
-    var BSGlobalInfo = { tenantId: BSGlobalCopy.tenantInfo.tenantId, userID: BSGlobalCopy.loginUserInfo.id };
+    var BSGlobalInfo = { tenantId: BSGlobalCopy.tenantInfo.Id, userID: BSGlobalCopy.loginUserInfo.Id };
     //说明是新版菜单体系的
     if (showData === undefined) {
         showData = document.getElementsByClassName('Header__GlobalNavigationButton')[0];
         BSGlobalInfo = { tenantId: BSGlobalCopy.tenantInfo.Id, userID: BSGlobalCopy.loginUserInfo.Id };
     }
-
+    if (showData === undefined)
+    {
+        return;
+    }
+    setSuccess = true;;
     var pApendTenantId = ctorElement("appendtenantId", BSGlobalInfo.tenantId, "租户ID");
     var pApendTuserid = ctorElement("appenduserId", BSGlobalInfo.userID, "用户ID");
 
@@ -65,6 +71,7 @@ function ctorElement(id, html, fieldName) {
     pApend.className = "company-name";
     pApend.style = "color: red;padding-left:10px;margin:auto;font-size:14px;";
     pApend.id = id;
+   
     pApend.onclick = function (pApend) {
         copyLink(pApend, fieldName);
     };
